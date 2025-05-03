@@ -14,14 +14,17 @@ import ru.netology.credit_apply.exception.LoanApplicationNotFound;
 import ru.netology.credit_apply.model.LoanApplication;
 import ru.netology.credit_apply.model.LoanApplicationDto;
 import ru.netology.credit_apply.repository.LoanApplicationRepository;
+import ru.netology.credit_apply.service.KafkaSender;
 
 @RestController
 @RequestMapping("/api/application")
 public class LoanApplicationController {
     private final LoanApplicationRepository repo;
+    private final KafkaSender kafkaSender;
 
-    public LoanApplicationController(LoanApplicationRepository repo) {
+    public LoanApplicationController(LoanApplicationRepository repo, KafkaSender kafkaSender) {
         this.repo = repo;
+        this.kafkaSender = kafkaSender;
     }
 
     @PostMapping
@@ -30,6 +33,7 @@ public class LoanApplicationController {
         LoanApplication application = convert(dto);
         System.out.println(application);
         repo.save(application);
+        kafkaSender.sendToProcessor(application);
         return application;
     }
 
