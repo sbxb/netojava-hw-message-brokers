@@ -1,4 +1,4 @@
-package ru.netology.credit_apply.model;
+package ru.netology.credit_common.model;
 
 public record LoanApplicationProcessorEvent(
         int id,

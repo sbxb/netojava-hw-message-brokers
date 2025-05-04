@@ -1,5 +1,7 @@
 package ru.netology.credit_apply.model;
 
+import ru.netology.credit_common.model.LoanApplicationProcessorEvent;
+
 public class ModelConvertor {
     public static LoanApplication dtoToLoanApplication(LoanApplicationDto dto) {
         return new LoanApplication(

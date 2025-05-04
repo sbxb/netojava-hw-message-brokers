@@ -34,6 +34,11 @@
 			<artifactId>spring-boot-starter-json</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>ru.netology</groupId>
+			<artifactId>credit-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>

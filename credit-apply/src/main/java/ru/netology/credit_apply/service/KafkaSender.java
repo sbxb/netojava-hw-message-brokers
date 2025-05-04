@@ -5,7 +5,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import ru.netology.credit_apply.model.LoanApplication;
 import ru.netology.credit_apply.model.LoanApplicationDto;
-import ru.netology.credit_apply.model.LoanApplicationProcessorEvent;
+import ru.netology.credit_common.model.LoanApplicationProcessorEvent;
 
 @Service
 public class KafkaSender {

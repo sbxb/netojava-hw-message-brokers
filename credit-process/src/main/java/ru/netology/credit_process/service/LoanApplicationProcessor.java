@@ -1,7 +1,7 @@
 package ru.netology.credit_process.service;
 
 import org.springframework.stereotype.Service;
-import ru.netology.credit_process.model.LoanApplicationProcessorEvent;
+import ru.netology.credit_common.model.LoanApplicationProcessorEvent;
 
 @Service
 public class LoanApplicationProcessor {

@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.KafkaListener;
-import ru.netology.credit_process.model.LoanApplicationProcessorEvent;
+import ru.netology.credit_common.model.LoanApplicationProcessorEvent;
 import ru.netology.credit_process.service.LoanApplicationProcessor;
 
 @SpringBootApplication
