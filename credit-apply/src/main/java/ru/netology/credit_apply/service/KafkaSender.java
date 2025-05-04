@@ -5,19 +5,20 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import ru.netology.credit_apply.model.LoanApplication;
 import ru.netology.credit_apply.model.LoanApplicationDto;
+import ru.netology.credit_apply.model.LoanApplicationProcessorEvent;
 
 @Service
 public class KafkaSender {
     @Value("${my.kafka.topic}")
     private String mainTopic;
 
-    private final KafkaTemplate<String, LoanApplication> kafkaTemplate;
+    private final KafkaTemplate<String, LoanApplicationProcessorEvent> kafkaTemplate;
 
-    public KafkaSender(KafkaTemplate<String, LoanApplication> kafkaTemplate) {
+    public KafkaSender(KafkaTemplate<String, LoanApplicationProcessorEvent> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendToProcessor(LoanApplication application) {
-        kafkaTemplate.send(mainTopic, application);
+    public void sendToProcessor(LoanApplicationProcessorEvent e) {
+        kafkaTemplate.send(mainTopic, e);
     }
 }

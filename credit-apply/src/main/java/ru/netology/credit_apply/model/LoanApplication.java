@@ -8,12 +8,12 @@ import jakarta.persistence.Id;
 public class LoanApplication {
     @Id
     @GeneratedValue
-    public Integer id;
-    public int loanAmount;
-    public int loanTerm;
-    public int applicantIncome;
-    public int creditLoad;
-    public String status;
+    private Integer id;
+    private int loanAmount;
+    private int loanTerm;
+    private int applicantIncome;
+    private int creditLoad;
+    private String status;
 
     public LoanApplication(Integer id, int loanAmount, int loanTerm, int applicantIncome, int creditLoad, String status) {
         this.id = id;

@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.netology.credit_apply.exception.LoanApplicationNotFound;
 import ru.netology.credit_apply.model.LoanApplication;
 import ru.netology.credit_apply.model.LoanApplicationDto;
+import ru.netology.credit_apply.model.ModelConvertor;
 import ru.netology.credit_apply.repository.LoanApplicationRepository;
 import ru.netology.credit_apply.service.KafkaSender;
 
 @RestController
 @RequestMapping("/api/application")
 public class LoanApplicationController {
+    private static final double MONTHLY_RATE = 0.0125; // 15 percent per annum
     private final LoanApplicationRepository repo;
     private final KafkaSender kafkaSender;
 
@@ -30,10 +32,10 @@ public class LoanApplicationController {
     @PostMapping
     public LoanApplication save(@Valid @RequestBody LoanApplicationDto dto) {
         System.out.println(dto);
-        LoanApplication application = convert(dto);
+        LoanApplication application = ModelConvertor.dtoToLoanApplication(dto);
         System.out.println(application);
         repo.save(application);
-        kafkaSender.sendToProcessor(application);
+        kafkaSender.sendToProcessor(ModelConvertor.loanApplicationToEvent(application, MONTHLY_RATE));
         return application;
     }
 
@@ -51,13 +53,4 @@ public class LoanApplicationController {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    private LoanApplication convert(LoanApplicationDto dto) {
-        return new LoanApplication(
-                null,
-                dto.loanAmount(),
-                dto.loanTerm(),
-                dto.applicantIncome(),
-                dto.creditLoad(),
-                "PENDING");
-    }
 }
