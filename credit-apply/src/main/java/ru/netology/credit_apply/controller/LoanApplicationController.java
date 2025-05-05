@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.netology.credit_apply.exception.LoanApplicationNotFound;
 import ru.netology.credit_apply.model.LoanApplication;
 import ru.netology.credit_apply.model.LoanApplicationDto;
+import ru.netology.credit_apply.model.LoanApplicationIdDto;
+import ru.netology.credit_apply.model.LoanApplicationStatusDto;
 import ru.netology.credit_apply.model.ModelConvertor;
 import ru.netology.credit_apply.repository.LoanApplicationRepository;
 import ru.netology.credit_apply.service.KafkaSender;
@@ -30,22 +32,30 @@ public class LoanApplicationController {
     }
 
     @PostMapping
-    public LoanApplication save(@Valid @RequestBody LoanApplicationDto dto) {
-        System.out.println(dto);
-        LoanApplication application = ModelConvertor.dtoToLoanApplication(dto);
-        System.out.println(application);
+    public LoanApplicationIdDto save(@Valid @RequestBody LoanApplicationDto dto) {
+        var application = ModelConvertor.dtoToLoanApplication(dto);
         repo.save(application);
+        System.out.println(application);
         kafkaSender.sendToProcessor(ModelConvertor.loanApplicationToEvent(application, MONTHLY_RATE));
-        return application;
+        return new LoanApplicationIdDto(application.getId());
     }
 
     @GetMapping("/{id}")
-    public LoanApplication getStatus(@PathVariable("id") int id) {
+    public LoanApplication getById(@PathVariable("id") int id) {
         var application = repo.findById(id);
         if (application.isEmpty()) {
             throw new LoanApplicationNotFound("Loan application with id " + id + " not found");
         }
         return application.get();
+    }
+
+    @GetMapping("/{id}/status")
+    public LoanApplicationStatusDto getStatus(@PathVariable("id") int id) {
+        var application = repo.findById(id);
+        if (application.isEmpty()) {
+            throw new LoanApplicationNotFound("Loan application with id " + id + " not found");
+        }
+        return ModelConvertor.loanApplicationToStatusDto(application.get());
     }
 
     @ExceptionHandler(LoanApplicationNotFound.class)

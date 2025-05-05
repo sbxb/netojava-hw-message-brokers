@@ -25,4 +25,8 @@ public class ModelConvertor {
                 la.getStatus()
         );
     }
+
+    public static LoanApplicationStatusDto loanApplicationToStatusDto(LoanApplication la) {
+        return new LoanApplicationStatusDto(la.getId(), la.getStatus());
+    }
 }
