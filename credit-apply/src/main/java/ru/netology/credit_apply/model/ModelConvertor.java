@@ -10,6 +10,7 @@ public class ModelConvertor {
                 dto.loanTerm(),
                 dto.applicantIncome(),
                 dto.creditLoad(),
+                dto.creditScore(),
                 "PENDING");
     }
 

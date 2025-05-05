@@ -13,20 +13,21 @@ public class LoanApplication {
     private int loanTerm;
     private int applicantIncome;
     private int creditLoad;
+    private int creditScore;
     private String status;
 
-    public LoanApplication(Integer id, int loanAmount, int loanTerm, int applicantIncome, int creditLoad, String status) {
+    public LoanApplication(Integer id, int loanAmount, int loanTerm, int applicantIncome, int creditLoad, int creditScore, String status) {
         this.id = id;
         this.loanAmount = loanAmount;
         this.loanTerm = loanTerm;
         this.applicantIncome = applicantIncome;
         this.creditLoad = creditLoad;
+        this.creditScore = creditScore;
         this.status = status;
     }
 
     public LoanApplication() {
     }
-
 
     public Integer getId() {
         return id;
@@ -68,6 +69,14 @@ public class LoanApplication {
         this.creditLoad = creditLoad;
     }
 
+    public int getCreditScore() {
+        return creditScore;
+    }
+
+    public void setCreditScore(int creditScore) {
+        this.creditScore = creditScore;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -84,6 +93,7 @@ public class LoanApplication {
                 ", loanTerm=" + loanTerm +
                 ", applicantIncome=" + applicantIncome +
                 ", creditLoad=" + creditLoad +
+                ", creditScore=" + creditScore +
                 ", status='" + status + '\'' +
                 '}';
     }
