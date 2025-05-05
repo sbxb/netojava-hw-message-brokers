@@ -14,7 +14,8 @@ public class ModelConvertor {
                 "PENDING");
     }
 
-    public static LoanApplicationProcessorEvent loanApplicationToEvent(LoanApplication la, double monthlyRate) {
+    public static LoanApplicationProcessorEvent loanApplicationToEvent(LoanApplication la,
+                                                                       double monthlyRate) {
         return new LoanApplicationProcessorEvent(
                 la.getId(),
                 la.getLoanAmount(),

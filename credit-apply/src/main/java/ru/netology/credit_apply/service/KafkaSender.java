@@ -3,8 +3,6 @@ package ru.netology.credit_apply.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import ru.netology.credit_apply.model.LoanApplication;
-import ru.netology.credit_apply.model.LoanApplicationDto;
 import ru.netology.credit_common.model.LoanApplicationProcessorEvent;
 
 @Service

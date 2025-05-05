@@ -19,7 +19,8 @@ public class LoanApplication {
     private int creditScore;
     private String status;
 
-    public LoanApplication(Integer id, int loanAmount, int loanTerm, int applicantIncome, int creditLoad, int creditScore, String status) {
+    public LoanApplication(Integer id, int loanAmount, int loanTerm, int applicantIncome,
+                           int creditLoad, int creditScore, String status) {
         this.id = id;
         this.loanAmount = loanAmount;
         this.loanTerm = loanTerm;

@@ -1,7 +1,6 @@
 package ru.netology.credit_apply.service;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.netology.credit_apply.repository.LoanApplicationRepository;
 import ru.netology.credit_common.model.LoanApplicationProcessorEvent;

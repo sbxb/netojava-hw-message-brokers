@@ -36,7 +36,8 @@ public class LoanApplicationController {
         var application = ModelConvertor.dtoToLoanApplication(dto);
         repo.save(application);
         System.out.println(application);
-        kafkaSender.sendToProcessor(ModelConvertor.loanApplicationToEvent(application, MONTHLY_RATE));
+        kafkaSender.sendToProcessor(ModelConvertor.loanApplicationToEvent(application,
+                MONTHLY_RATE));
         return new LoanApplicationIdDto(application.getId());
     }
 

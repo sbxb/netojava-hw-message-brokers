@@ -3,7 +3,7 @@ package ru.netology.credit_apply.model;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
-public record LoanApplicationDto (
+public record LoanApplicationDto(
         @Min(1_000)
         @Max(2_000_000_000)
         int loanAmount,
@@ -23,4 +23,4 @@ public record LoanApplicationDto (
         @Min(1)
         @Max(999)
         int creditScore
-){}
+) {}
