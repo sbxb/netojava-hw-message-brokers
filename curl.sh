@@ -1,9 +1,6 @@
 #!/bin/bash
 URL="http://localhost:8080/api/application"
 
-#echo -e "\n\n *** Add the second application"
-#curl -i -X POST -d '{"loanAmount": 0, "loanTerm": 0, "applicantIncome": 0, "creditLoad": 0, "creditScore": 0}' -H "Content-Type: application/json" "${URL}"
-
 # malformed requests
 echo -e "\n\n *** Empty -> got 400"
 curl -i -X POST -d '{}' -H "Content-Type: application/json" "${URL}"
@@ -24,3 +21,17 @@ curl -i -X POST -d '{"loanAmount": 1000000, "loanTerm": 12, "applicantIncome": 1
 
 echo -e "\n\n *** Get previously created application ***\n"
 curl -i "${URL}/1"
+
+echo -e "\n\n *** Add the second application"
+curl -i -X POST -d '{"loanAmount": 600000, "loanTerm": 12, "applicantIncome": 155000, "creditLoad": 1000, "creditScore": 500}' -H "Content-Type: application/json" "${URL}"
+
+echo -e "\n\n *** Get previously created application ***\n"
+curl -i "${URL}/2"
+
+sleep 1
+
+echo -e "\n\n *** Get updated status of the first application ***\n"
+curl -i "${URL}/1/status"
+
+echo -e "\n\n *** Get updated status of the second application ***\n"
+curl -i "${URL}/2/status"

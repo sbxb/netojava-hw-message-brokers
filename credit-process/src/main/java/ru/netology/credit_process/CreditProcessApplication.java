@@ -26,7 +26,8 @@ public class CreditProcessApplication {
 
     @KafkaListener(topics = "loan-applications")
     public void processMessage(LoanApplicationProcessorEvent e) {
-        var status = processor.approved(e) ? LoanApplicationStatus.APPROVED : LoanApplicationStatus.REJECTED;
+        var status = processor.approved(e) ? LoanApplicationStatus.APPROVED :
+                LoanApplicationStatus.REJECTED;
         LoanApplicationProcessorEvent res = new LoanApplicationProcessorEvent(
                 e.id(),
                 e.loanAmount(),
