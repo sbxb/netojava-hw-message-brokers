@@ -37,7 +37,6 @@ public class CreditProcessApplication {
                 e.monthlyRate(),
                 status
         );
-        System.out.println(res);
 
         rabbitTemplate.convertAndSend(mainExchange, "lakey", res);
     }
