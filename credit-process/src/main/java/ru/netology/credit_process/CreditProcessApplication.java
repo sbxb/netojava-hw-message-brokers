@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.KafkaListener;
 import ru.netology.credit_common.model.LoanApplicationProcessorEvent;
+import ru.netology.credit_common.model.LoanApplicationStatus;
 import ru.netology.credit_process.service.LoanApplicationProcessor;
 
 @SpringBootApplication
@@ -25,7 +26,7 @@ public class CreditProcessApplication {
 
     @KafkaListener(topics = "loan-applications")
     public void processMessage(LoanApplicationProcessorEvent e) {
-        String status = processor.approved(e) ? "APPROVED" : "REJECTED";
+        var status = processor.approved(e) ? LoanApplicationStatus.APPROVED : LoanApplicationStatus.REJECTED;
         LoanApplicationProcessorEvent res = new LoanApplicationProcessorEvent(
                 e.id(),
                 e.loanAmount(),

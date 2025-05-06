@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import ru.netology.credit_common.model.LoanApplicationStatus;
 
 @Entity
 @Table(name = "loan_applications")
@@ -17,10 +18,10 @@ public class LoanApplication {
     private int applicantIncome;
     private int creditLoad;
     private int creditScore;
-    private String status;
+    private LoanApplicationStatus status;
 
     public LoanApplication(Integer id, int loanAmount, int loanTerm, int applicantIncome,
-                           int creditLoad, int creditScore, String status) {
+                           int creditLoad, int creditScore, LoanApplicationStatus status) {
         this.id = id;
         this.loanAmount = loanAmount;
         this.loanTerm = loanTerm;
@@ -81,11 +82,11 @@ public class LoanApplication {
         this.creditScore = creditScore;
     }
 
-    public String getStatus() {
+    public LoanApplicationStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(LoanApplicationStatus status) {
         this.status = status;
     }
 

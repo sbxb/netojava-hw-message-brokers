@@ -1,6 +1,7 @@
 package ru.netology.credit_apply.model;
 
 import ru.netology.credit_common.model.LoanApplicationProcessorEvent;
+import ru.netology.credit_common.model.LoanApplicationStatus;
 
 public class ModelConvertor {
     public static LoanApplication dtoToLoanApplication(LoanApplicationDto dto) {
@@ -11,7 +12,7 @@ public class ModelConvertor {
                 dto.applicantIncome(),
                 dto.creditLoad(),
                 dto.creditScore(),
-                "PENDING");
+                LoanApplicationStatus.PENDING);
     }
 
     public static LoanApplicationProcessorEvent loanApplicationToEvent(LoanApplication la,

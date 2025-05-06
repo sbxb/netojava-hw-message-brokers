@@ -7,5 +7,5 @@ public record LoanApplicationProcessorEvent(
         int applicantIncome,
         int creditLoad,
         double monthlyRate,
-        String status
+        LoanApplicationStatus status
 ) {}
